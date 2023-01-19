@@ -18,7 +18,7 @@ class ConvertWordPDF:
             sheet_input = wrkbk_input.active
                     
 
-            for i in range(2, sheet_input.max_row+1):
+            for i in range(1, sheet_input.max_row+1):
                     cell_obj = sheet_input.cell(row=i, column=1)
                     if cell_obj.value is not None and cell_obj.value != '':
                         docx_name = sheet_input.cell(row=i, column=1).value
@@ -27,10 +27,6 @@ class ConvertWordPDF:
                             self.convertpdf(name=docx_name)
                         except Exception as e:
                              print(e)
-
-
-                        
-                        
     
                     if i == sheet_input.max_row:
                             
@@ -43,15 +39,7 @@ class ConvertWordPDF:
         inputfile = os.path.join(currentdir, '{infile}'.format(infile=name))
         print(inputfile) 
         removedocx = inputfile.replace(".docx",".pdf")
-        outpatch = removedocx 
-        # Recupera o path completo (absoluto) do arquivo de
-        # entrada (.doc) a partir do primeiro parametro da
-        # linha de comando
-        
-
-        # Recupera o path completo (absoluto) do arquivo de
-        # saida (.pdf) a partir do segundo parametro da linha
-        # de comando
+        outpatch = removedocx
         
         
         # Cria instancia de um objeto COM para manipular Documentos Word
