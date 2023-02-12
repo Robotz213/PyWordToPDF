@@ -1,0 +1,5 @@
+openpyxl
+comtypes
+
+## requer LibreOffice instalado
+
