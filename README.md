@@ -17,3 +17,5 @@ Modo de usar:
 
 
 Requer WORD (MsOFFICE) ou LibreOffice instalados
+
+Execute "pip install -r 'requirements'" antes de usar o Script 
