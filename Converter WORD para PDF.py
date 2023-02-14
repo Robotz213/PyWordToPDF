@@ -5,8 +5,9 @@ import threading
 import comtypes.client
 from pathlib import *
 from checkword import checkdir
+from termcolor import colored
 
-nomexls = input("Informe a Planilha: ")
+nomexls = input(colored("Informe a Planilha: ", "blue"))
 
 
 class ConvertWordPDF:
@@ -39,6 +40,7 @@ class ConvertWordPDF:
         
                         if i == sheet_input.max_row:
                             print('fim do processo')
+                            os.system("PAUSE")
 
     def convertpdf(self, namefile):
 
@@ -55,16 +57,22 @@ class ConvertWordPDF:
 
         # Carrega Arquivo de entrada (.doc)
         doc = word.Documents.Open(inputfile)
+        print(colored('Convertendo arquivo "{a}"...'.format(a=namefile), 'blue'))
 
-        # Salva arquivo de saida em formato .pdf
-        doc.SaveAs(outpatch, FileFormat=wdFormatPDF)
+        try:
+            
+            # Salva arquivo de saida em formato .pdf
+            doc.SaveAs(outpatch, FileFormat=wdFormatPDF)
 
-        # Fecha arquivo de Entrada
-        doc.Close()
+            # Fecha arquivo de Entrada
+            doc.Close()
 
-        # Finaliza instancia do Objeto COM criado
-        word.Quit()
+            # Finaliza instancia do Objeto COM criado
+            word.Quit()
+            print(colored('Documento Convertido com Sucesso!', 'green'))
 
+        except:
+            print(colored('Não foi possível converter o arquivo "{b}"'.formar(b=namefile), 'red'))  
 
     def pdfinsoffice(self, namefile):
 
@@ -75,20 +83,23 @@ class ConvertWordPDF:
         for root, dirs, files in os.walk(path):
             if name in files:
                 LIBRE_OFFICE = os.path.join(root, name)
-        print(LIBRE_OFFICE)
 
-        
-        
         currentdir = Path(__file__).parent.resolve()
         arquivo_de_entrada = os.path.join(currentdir, '{infile}'.format(infile=namefile))
         outfile = os.path.join(currentdir)
         
-        print(arquivo_de_entrada) 
-
-        p = Popen([LIBRE_OFFICE, '--headless', '--convert-to', 'pdf', '--outdir', outfile , arquivo_de_entrada])
-        p.communicate()
+        print(colored('Convertendo arquivo "{a}"...'.format(a=namefile), 'blue'))
+        
+        try:
+            p = Popen([LIBRE_OFFICE, '--headless', '--convert-to', 'pdf', '--outdir', outfile , arquivo_de_entrada])
+            p.communicate()
+            print(colored('Documento Convertido com Sucesso!', 'green'))
+        except:
+            print(colored('Não foi possível converter o arquivo "{b}"'.formar(b=namefile), 'red'))
+             
             
 
          
 start = ConvertWordPDF()
 start.initbot()
+
