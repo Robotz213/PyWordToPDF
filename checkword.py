@@ -13,7 +13,7 @@ class checkdir:
         for root, dirs, files in os.walk(pathfile):
             if exec in files:
                 result.append(os.path.join(root, exefile))
-        return True
+        return False
     
 
 

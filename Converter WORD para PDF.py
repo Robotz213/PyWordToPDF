@@ -6,8 +6,9 @@ import comtypes.client
 from pathlib import *
 from checkword import checkdir
 from termcolor import colored
+import sys
 
-nomexls = input(colored("Informe a Planilha: ", "blue"))
+nomexls = input(colored("Informe a Planilha: ", "yellow"))
 
 
 class ConvertWordPDF:
@@ -79,23 +80,37 @@ class ConvertWordPDF:
         path = 'c:\\Program Files\\'
         name = 'soffice.exe'
 
-        LIBRE_OFFICE = ''
-        for root, dirs, files in os.walk(path):
-            if name in files:
-                LIBRE_OFFICE = os.path.join(root, name)
+        if sys.platform == 'linux':
+            currentdir = Path(__file__).parent.resolve()
+            arquivo_de_entrada = os.path.join(currentdir, '{infile}'.format(infile=namefile))
+            outfile = os.path.join(currentdir)
+            
+            print(colored('Convertendo arquivo "{a}"...'.format(a=namefile), 'blue'))
+            
+            try:
+                p = Popen(['soffice', '--headless', '--convert-to', 'pdf', '--outdir', outfile , arquivo_de_entrada])
+                p.communicate()
+                print(colored('Documento Convertido com Sucesso!', 'green'))
+            except:
+                print(colored('Não foi possível converter o arquivo "{b}"'.formar(b=namefile), 'red'))
+        else:
+            LIBRE_OFFICE = ''
+            for root, dirs, files in os.walk(path):
+                if name in files:
+                    LIBRE_OFFICE = os.path.join(root, name)
 
-        currentdir = Path(__file__).parent.resolve()
-        arquivo_de_entrada = os.path.join(currentdir, '{infile}'.format(infile=namefile))
-        outfile = os.path.join(currentdir)
-        
-        print(colored('Convertendo arquivo "{a}"...'.format(a=namefile), 'blue'))
-        
-        try:
-            p = Popen([LIBRE_OFFICE, '--headless', '--convert-to', 'pdf', '--outdir', outfile , arquivo_de_entrada])
-            p.communicate()
-            print(colored('Documento Convertido com Sucesso!', 'green'))
-        except:
-            print(colored('Não foi possível converter o arquivo "{b}"'.formar(b=namefile), 'red'))
+            currentdir = Path(__file__).parent.resolve()
+            arquivo_de_entrada = os.path.join(currentdir, '{infile}'.format(infile=namefile))
+            outfile = os.path.join(currentdir)
+            
+            print(colored('Convertendo arquivo "{a}"...'.format(a=namefile), 'blue'))
+            
+            try:
+                p = Popen([LIBRE_OFFICE, '--headless', '--convert-to', 'pdf', '--outdir', outfile , arquivo_de_entrada])
+                p.communicate()
+                print(colored('Documento Convertido com Sucesso!', 'green'))
+            except:
+                print(colored('Não foi possível converter o arquivo "{b}"'.formar(b=namefile), 'red'))
              
             
 
