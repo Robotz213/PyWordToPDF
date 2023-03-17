@@ -2,7 +2,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.docx
+*.xlsx
 
+*.profile_default
 # C extensions
 *.so
 
