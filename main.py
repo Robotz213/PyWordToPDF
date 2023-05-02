@@ -13,7 +13,7 @@ from pathlib import *
 from checkword import checkdir
 from termcolor import colored
 import sys
-
+from tkinter.messagebox import showinfo
 
 
 
@@ -58,9 +58,9 @@ class Uploadfiles(QWidget, Ui_Upload):
                         else:
                              self.pdfinsoffice(namefile=docx_name)
         
-                        if i == sheet_input.max_row:
-                            print('fim do processo')
-                            os.system("PAUSE")
+            if i == sheet_input.max_row:
+                print('fim do processo')
+                showinfo('Sucesso!', 'Todos os documentos foram convertidos com sucesso!')
 
     def convertpdf(self, namefile):
 
@@ -101,7 +101,7 @@ class Uploadfiles(QWidget, Ui_Upload):
 
         print(colored('Convertendo arquivo "{a}"...'.format(a=namefile), 'yellow'))
         if sys.platform == 'linux':
-            currentdir = Path(__file__).parent.resolve()
+            currentdir = Path(self.p).parent.resolve()
             arquivo_de_entrada = os.path.join(currentdir, '{infile}'.format(infile=namefile))
             outfile = os.path.join(currentdir)
             
@@ -119,7 +119,7 @@ class Uploadfiles(QWidget, Ui_Upload):
                 if name in files:
                     LIBRE_OFFICE = os.path.join(root, name)
 
-            currentdir = Path(__file__).parent.resolve()
+            currentdir = Path(self.p).parent.resolve()
             arquivo_de_entrada = os.path.join(currentdir, '{infile}'.format(infile=namefile))
             outfile = os.path.join(currentdir)
             
