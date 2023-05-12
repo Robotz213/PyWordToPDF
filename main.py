@@ -44,7 +44,7 @@ class Uploadfiles(QWidget, Ui_Upload):
                 docx_name = filename
 
                 self.pdfinsoffice(namefile=docx_name)
-
+            
 
     def pdfinsoffice(self, namefile):
 
