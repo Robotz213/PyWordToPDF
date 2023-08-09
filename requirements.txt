@@ -1,6 +1,6 @@
 openpyxl
 comtypes
 termcolor
-
+tqdm
 ## Requer LibreOffice instalado
 
