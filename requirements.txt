@@ -2,5 +2,6 @@ openpyxl
 comtypes
 termcolor
 tqdm
-## Requer LibreOffice instalado
+PyQt5==5.15.11
+PySide2==5.15.2.1
 
