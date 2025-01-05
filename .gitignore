@@ -8,7 +8,7 @@ __pycache__/
 *.profile_default
 # C extensions
 *.so
-
+bandit_results.html
 # Distribution / packaging
 .Python
 build/
