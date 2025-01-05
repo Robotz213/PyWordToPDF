@@ -1,16 +1,20 @@
 # -*- coding: utf-8 -*-
 
-################################################################################
-## Form generated from reading UI file 'uploadfiles.ui'
-##
-## Created by: Qt User Interface Compiler version 5.15.2
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
+# Form generated from reading UI file 'uploadfiles.ui'
+# Created by: Qt User Interface Compiler version 5.15.2
+# WARNING! All changes made in this file will be lost when recompiling UI file!
 
-from PySide2.QtCore import *
-from PySide2.QtGui import *
-from PySide2.QtWidgets import *
+from PySide2.QtCore import QCoreApplication, QMetaObject, QSize, Qt
+from PySide2.QtGui import QCursor, QFont
+from PySide2.QtWidgets import (
+    QFrame,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QPushButton,
+    QVBoxLayout,
+    QWidget,
+)
 
 
 class Ui_Upload(object):
